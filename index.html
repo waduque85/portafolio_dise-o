@@ -1,0 +1,2721 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Portafolio interactivo y CV de Diseñador Gráfico y Creador de Contenido Multimedia: Social Media, Motion Graphics, Branding, Video y Diseño Editorial." />
+  <meta name="theme-color" content="#0F172A" />
+  <title>Portafolio &amp; CV | Diseñador Gráfico &amp; Creador Multimedia</title>
+
+  <!-- Tipografía moderna (con fallback seguro del sistema) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ==========================================================================
+       1. VARIABLES DE DISEÑO (WCAG 2.1 AA - DARK MODE SOFISTICADO)
+       ========================================================================== */
+    :root {
+      /* Superficies */
+      --bg-primary: #0F172A;
+      --bg-secondary: #1E293B;
+      --bg-elevated: #263449;
+      --bg-glass: rgba(15, 23, 42, 0.86);
+
+      /* Textos de alto contraste (Ratio > 7:1 sobre superficies oscuras) */
+      --text-primary: #F8FAFC;
+      --text-secondary: #CBD5E1;
+      --text-muted: #94A3B8;
+
+      /* Acentos vibrantes (con texto oscuro #0F172A sobre botones para ratio > 9:1) */
+      --accent-sky: #38BDF8;
+      --accent-sky-hover: #7DD3FC;
+      --accent-emerald: #10B981;
+      --accent-emerald-hover: #34D399;
+      --accent-on-bright: #0F172A;
+
+      /* Bordes y sombras */
+      --border-subtle: rgba(148, 163, 184, 0.18);
+      --border-strong: rgba(56, 189, 248, 0.45);
+      --shadow-card: 0 12px 30px -12px rgba(2, 6, 23, 0.7);
+      --shadow-modal: 0 25px 60px -15px rgba(2, 6, 23, 0.9);
+
+      /* Tipografía y layout */
+      --font-sans: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      --font-display: 'Plus Jakarta Sans', 'Inter', system-ui, sans-serif;
+      --header-height: 76px;
+      --container-max: 1220px;
+      --radius-sm: 8px;
+      --radius-md: 14px;
+      --radius-lg: 20px;
+      --radius-pill: 9999px;
+
+      /* Transiciones */
+      --transition-fast: 180ms cubic-bezier(0.22, 1, 0.36, 1);
+      --transition-base: 280ms cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    /* ==========================================================================
+       2. RESET Y BASE ACCESIBLE
+       ========================================================================== */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: calc(var(--header-height) + 20px);
+      background-color: var(--bg-primary);
+      color: var(--text-primary);
+      font-family: var(--font-sans);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body {
+      background-color: var(--bg-primary);
+      background-image:
+        radial-gradient(circle at 12% 8%, rgba(56, 189, 248, 0.11), transparent 38%),
+        radial-gradient(circle at 88% 18%, rgba(16, 185, 129, 0.09), transparent 36%);
+      background-attachment: fixed;
+      color: var(--text-primary);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    body.modal-open {
+      overflow: hidden;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button {
+      font: inherit;
+      color: inherit;
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+
+    ul, ol {
+      list-style: none;
+    }
+
+    /* Indicador de foco WCAG 2.1 AA altamente visible para navegación por teclado */
+    :focus-visible {
+      outline: 3px solid var(--accent-sky);
+      outline-offset: 3px;
+      border-radius: 6px;
+    }
+
+    /* Enlace para saltar al contenido (lectores de pantalla y teclado) */
+    .skip-link {
+      position: fixed;
+      top: -100px;
+      left: 16px;
+      z-index: 9999;
+      background: var(--accent-sky);
+      color: var(--accent-on-bright);
+      font-weight: 700;
+      padding: 12px 18px;
+      border-radius: var(--radius-sm);
+      box-shadow: var(--shadow-card);
+      transition: top var(--transition-fast);
+    }
+    .skip-link:focus {
+      top: 16px;
+    }
+
+    /* Utilidad solo para lectores de pantalla */
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    .container {
+      width: min(100% - 2rem, var(--container-max));
+      margin-inline: auto;
+    }
+
+    section {
+      padding-block: clamp(3.5rem, 6vw, 5.5rem);
+    }
+
+    /* ==========================================================================
+       3. COMPONENTES REUTILIZABLES (BOTONES, BADGES, ENCABEZADOS DE SECCIÓN)
+       ========================================================================== */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.55rem;
+      padding: 0.78rem 1.35rem;
+      border-radius: var(--radius-pill);
+      font-weight: 600;
+      font-size: 0.95rem;
+      line-height: 1.2;
+      transition: transform var(--transition-fast), background-color var(--transition-fast), border-color var(--transition-fast), box-shadow var(--transition-fast);
+      white-space: nowrap;
+    }
+
+    .btn:active {
+      transform: translateY(1px);
+    }
+
+    .btn-primary {
+      background-color: var(--accent-sky);
+      color: var(--accent-on-bright);
+      box-shadow: 0 8px 22px -8px rgba(56, 189, 248, 0.65);
+    }
+    .btn-primary:hover {
+      background-color: var(--accent-sky-hover);
+      transform: translateY(-2px);
+    }
+
+    .btn-whatsapp {
+      background-color: var(--accent-emerald);
+      color: var(--accent-on-bright);
+      font-weight: 700;
+      box-shadow: 0 8px 22px -8px rgba(16, 185, 129, 0.6);
+    }
+    .btn-whatsapp:hover {
+      background-color: var(--accent-emerald-hover);
+      transform: translateY(-2px);
+    }
+
+    .btn-secondary {
+      background-color: var(--bg-secondary);
+      color: var(--text-primary);
+      border: 1px solid var(--border-subtle);
+    }
+    .btn-secondary:hover {
+      background-color: var(--bg-elevated);
+      border-color: var(--border-strong);
+      transform: translateY(-2px);
+    }
+
+    .btn-sm {
+      padding: 0.55rem 1rem;
+      font-size: 0.86rem;
+    }
+
+    .section-header {
+      display: flex;
+      flex-direction: column;
+      gap: 0.65rem;
+      margin-bottom: 2.25rem;
+    }
+
+    .section-kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--accent-sky);
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .section-title {
+      font-family: var(--font-display);
+      font-size: clamp(1.75rem, 3.2vw, 2.55rem);
+      font-weight: 800;
+      line-height: 1.18;
+      letter-spacing: -0.02em;
+    }
+
+    .section-subtitle {
+      color: var(--text-secondary);
+      max-width: 65ch;
+      font-size: 1.02rem;
+    }
+
+    /* ==========================================================================
+       4. HEADER FIJO Y NAVEGACIÓN ACCESIBLE
+       ========================================================================== */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      height: var(--header-height);
+      background-color: var(--bg-glass);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .header-inner {
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.7rem;
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: 1.12rem;
+      letter-spacing: -0.02em;
+    }
+
+    .brand-mark {
+      width: 38px;
+      height: 38px;
+      border-radius: 11px;
+      background: linear-gradient(135deg, var(--accent-sky), var(--accent-emerald));
+      color: var(--accent-on-bright);
+      display: grid;
+      place-items: center;
+      font-weight: 800;
+      font-size: 0.98rem;
+      flex-shrink: 0;
+    }
+
+    .brand-sub {
+      display: block;
+      font-family: var(--font-sans);
+      font-size: 0.72rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      letter-spacing: 0.02em;
+    }
+
+    .nav-desktop {
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    .nav-link {
+      padding: 0.5rem 0.95rem;
+      border-radius: var(--radius-pill);
+      color: var(--text-secondary);
+      font-weight: 500;
+      font-size: 0.94rem;
+      transition: color var(--transition-fast), background-color var(--transition-fast);
+    }
+
+    .nav-link:hover,
+    .nav-link[aria-current="true"] {
+      color: var(--text-primary);
+      background-color: rgba(56, 189, 248, 0.12);
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .menu-toggle {
+      display: none;
+      width: 44px;
+      height: 44px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-subtle);
+      background-color: var(--bg-secondary);
+      align-items: center;
+      justify-content: center;
+    }
+
+    .mobile-drawer {
+      display: none;
+      position: fixed;
+      inset: var(--header-height) 0 auto 0;
+      background-color: rgba(15, 23, 42, 0.98);
+      border-bottom: 1px solid var(--border-subtle);
+      padding: 1.25rem;
+      z-index: 99;
+      box-shadow: var(--shadow-card);
+    }
+
+    .mobile-drawer.is-open {
+      display: block;
+    }
+
+    .mobile-drawer nav {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .mobile-drawer .nav-link {
+      display: block;
+      padding: 0.85rem 1rem;
+      font-size: 1rem;
+    }
+
+    .mobile-drawer .btn-whatsapp {
+      margin-top: 0.75rem;
+      width: 100%;
+    }
+
+    /* ==========================================================================
+       5. HERO SECTION
+       ========================================================================== */
+    .hero {
+      padding-top: clamp(3rem, 7vw, 5.5rem);
+      padding-bottom: clamp(2.5rem, 5vw, 4rem);
+    }
+
+    .hero-card {
+      position: relative;
+      background: linear-gradient(155deg, rgba(30, 41, 59, 0.92), rgba(15, 23, 42, 0.92));
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: clamp(1.8rem, 4.5vw, 3.6rem);
+      box-shadow: var(--shadow-card);
+      overflow: hidden;
+    }
+
+    .hero-card::after {
+      content: "";
+      position: absolute;
+      inset: -40% -15% auto auto;
+      width: 420px;
+      height: 420px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(56, 189, 248, 0.16), transparent 68%);
+      pointer-events: none;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 780px;
+      display: flex;
+      flex-direction: column;
+      gap: 1.35rem;
+    }
+
+    .availability-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.55rem;
+      width: fit-content;
+      padding: 0.42rem 0.95rem;
+      border-radius: var(--radius-pill);
+      background-color: rgba(16, 185, 129, 0.14);
+      border: 1px solid rgba(16, 185, 129, 0.38);
+      color: #6EE7B7;
+      font-size: 0.84rem;
+      font-weight: 600;
+    }
+
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background-color: var(--accent-emerald);
+      box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.25);
+    }
+
+    .hero-title {
+      font-family: var(--font-display);
+      font-size: clamp(2.1rem, 4.8vw, 3.55rem);
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+    }
+
+    .hero-title .accent-gradient {
+      background: linear-gradient(90deg, var(--accent-sky), var(--accent-emerald));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero-description {
+      font-size: clamp(1rem, 1.4vw, 1.14rem);
+      color: var(--text-secondary);
+      max-width: 62ch;
+    }
+
+    .specialty-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.45rem 0.9rem;
+      border-radius: var(--radius-pill);
+      background-color: rgba(15, 23, 42, 0.72);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-primary);
+      font-size: 0.86rem;
+      font-weight: 500;
+    }
+
+    .badge-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background-color: var(--accent-sky);
+    }
+
+    .hero-cta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.85rem;
+      margin-top: 0.35rem;
+    }
+
+    /* ==========================================================================
+       6. SISTEMA DE FILTROS Y GALERÍA MULTIMEDIA DINÁMICA
+       ========================================================================== */
+    .filter-bar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.6rem;
+      margin-bottom: 1.75rem;
+    }
+
+    .filter-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      padding: 0.62rem 1.15rem;
+      border-radius: var(--radius-pill);
+      background-color: var(--bg-secondary);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      font-weight: 600;
+      transition: all var(--transition-fast);
+    }
+
+    .filter-btn:hover {
+      color: var(--text-primary);
+      border-color: var(--border-strong);
+      background-color: var(--bg-elevated);
+    }
+
+    .filter-btn[aria-pressed="true"] {
+      background-color: var(--accent-sky);
+      color: var(--accent-on-bright);
+      border-color: var(--accent-sky);
+      box-shadow: 0 6px 18px -6px rgba(56, 189, 248, 0.65);
+    }
+
+    .filter-count {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 22px;
+      height: 20px;
+      padding-inline: 6px;
+      border-radius: var(--radius-pill);
+      font-size: 0.74rem;
+      font-weight: 700;
+      background-color: rgba(15, 23, 42, 0.32);
+    }
+
+    .filter-btn[aria-pressed="true"] .filter-count {
+      background-color: rgba(15, 23, 42, 0.2);
+      color: var(--accent-on-bright);
+    }
+
+    /* Grilla Dinámica Responsiva que acomoda 9:16, 16:9, Carruseles y Documentos */
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      grid-auto-flow: dense;
+      gap: 1.35rem;
+      align-items: stretch;
+    }
+
+    .media-card {
+      grid-column: span 4;
+      background-color: var(--bg-secondary);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      box-shadow: var(--shadow-card);
+      transition: transform var(--transition-base), border-color var(--transition-base), box-shadow var(--transition-base);
+    }
+
+    .media-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--border-strong);
+      box-shadow: 0 20px 36px -14px rgba(2, 6, 23, 0.85);
+    }
+
+    /* Proporciones armónicas en escritorio */
+    .media-card[data-format="reel"] {
+      grid-column: span 4;
+      grid-row: span 2;
+    }
+
+    .media-card[data-format="video"] {
+      grid-column: span 8;
+    }
+
+    .media-card[data-format="carousel"] {
+      grid-column: span 4;
+    }
+
+    .media-card[data-format="pdf"],
+    .media-card[data-format="presentation"] {
+      grid-column: span 4;
+    }
+
+    /* Cuando se filtra por una sola categoría, la distribución se normaliza limpiamente */
+    .portfolio-grid.is-filtered .media-card[data-format="video"] {
+      grid-column: span 6;
+    }
+    .portfolio-grid.is-filtered .media-card[data-format="reel"] {
+      grid-column: span 3;
+      grid-row: span 1;
+    }
+
+    .card-thumb-wrap {
+      position: relative;
+      width: 100%;
+      overflow: hidden;
+      background-color: #0B1222;
+      flex-shrink: 0;
+    }
+
+    .media-card[data-format="reel"] .card-thumb-wrap {
+      aspect-ratio: 9 / 16;
+      flex: 1 1 auto;
+    }
+
+    .media-card[data-format="video"] .card-thumb-wrap {
+      aspect-ratio: 16 / 9;
+    }
+
+    .media-card[data-format="carousel"] .card-thumb-wrap {
+      aspect-ratio: 4 / 3;
+    }
+
+    .media-card[data-format="pdf"] .card-thumb-wrap,
+    .media-card[data-format="presentation"] .card-thumb-wrap {
+      aspect-ratio: 16 / 10;
+    }
+
+    .card-thumb {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 420ms cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .media-card:hover .card-thumb {
+      transform: scale(1.04);
+    }
+
+    .card-overlay-trigger {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(180deg, rgba(15, 23, 42, 0.12) 0%, rgba(15, 23, 42, 0.55) 100%);
+      transition: background var(--transition-fast);
+    }
+
+    .media-card:hover .card-overlay-trigger {
+      background: linear-gradient(180deg, rgba(15, 23, 42, 0.18) 0%, rgba(15, 23, 42, 0.72) 100%);
+    }
+
+    .play-circle {
+      width: 62px;
+      height: 62px;
+      border-radius: 50%;
+      background-color: rgba(56, 189, 248, 0.94);
+      color: var(--accent-on-bright);
+      display: grid;
+      place-items: center;
+      box-shadow: 0 12px 28px rgba(56, 189, 248, 0.45);
+      transition: transform var(--transition-fast), background-color var(--transition-fast);
+    }
+
+    .media-card:hover .play-circle,
+    .card-overlay-trigger:focus-visible .play-circle {
+      transform: scale(1.09);
+      background-color: var(--accent-sky-hover);
+    }
+
+    .card-badges {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      right: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.5rem;
+      pointer-events: none;
+    }
+
+    .pill-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0.32rem 0.72rem;
+      border-radius: var(--radius-pill);
+      background-color: rgba(15, 23, 42, 0.85);
+      border: 1px solid rgba(248, 250, 252, 0.16);
+      color: var(--text-primary);
+      font-size: 0.74rem;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+      backdrop-filter: blur(6px);
+    }
+
+    .pill-tag--emerald {
+      border-color: rgba(16, 185, 129, 0.5);
+      color: #6EE7B7;
+    }
+
+    .pill-tag--sky {
+      border-color: rgba(56, 189, 248, 0.5);
+      color: #7DD3FC;
+    }
+
+    .card-body {
+      padding: 1.2rem 1.25rem 1.3rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.55rem;
+    }
+
+    .card-meta {
+      font-size: 0.78rem;
+      color: var(--accent-sky);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .card-title {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      font-weight: 700;
+      line-height: 1.3;
+      color: var(--text-primary);
+    }
+
+    .card-desc {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      line-height: 1.5;
+    }
+
+    .card-footer {
+      margin-top: 0.55rem;
+      padding-top: 0.85rem;
+      border-top: 1px solid var(--border-subtle);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.6rem;
+      flex-wrap: wrap;
+    }
+
+    .card-tools {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    .empty-state {
+      grid-column: 1 / -1;
+      text-align: center;
+      padding: 3rem 1.5rem;
+      background-color: var(--bg-secondary);
+      border: 1px dashed var(--border-subtle);
+      border-radius: var(--radius-md);
+      color: var(--text-secondary);
+    }
+
+    /* ==========================================================================
+       7. HABILIDADES DE SOFTWARE
+       ========================================================================== */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 1.15rem;
+    }
+
+    .skill-card {
+      background-color: var(--bg-secondary);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 1.25rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+      transition: border-color var(--transition-fast), transform var(--transition-fast);
+    }
+
+    .skill-card:hover {
+      border-color: var(--border-strong);
+      transform: translateY(-2px);
+    }
+
+    .skill-top {
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+    }
+
+    .skill-badge {
+      width: 44px;
+      height: 44px;
+      border-radius: 11px;
+      display: grid;
+      place-items: center;
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: 0.96rem;
+      flex-shrink: 0;
+      background-color: rgba(56, 189, 248, 0.14);
+      border: 1px solid rgba(56, 189, 248, 0.35);
+      color: var(--accent-sky);
+    }
+
+    .skill-badge--emerald {
+      background-color: rgba(16, 185, 129, 0.14);
+      border-color: rgba(16, 185, 129, 0.35);
+      color: #6EE7B7;
+    }
+
+    .skill-name {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 1rem;
+    }
+
+    .skill-role {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+    }
+
+    .skill-bar-track {
+      width: 100%;
+      height: 8px;
+      border-radius: var(--radius-pill);
+      background-color: rgba(15, 23, 42, 0.85);
+      overflow: hidden;
+    }
+
+    .skill-bar-fill {
+      height: 100%;
+      border-radius: var(--radius-pill);
+      background: linear-gradient(90deg, var(--accent-sky), var(--accent-emerald));
+    }
+
+    .skill-level-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.78rem;
+      color: var(--text-secondary);
+      font-weight: 500;
+    }
+
+    /* ==========================================================================
+       8. SECCIÓN CV INTEGRADA (PERFIL + LÍNEA DE TIEMPO)
+       ========================================================================== */
+    .cv-layout {
+      display: grid;
+      grid-template-columns: minmax(290px, 370px) 1fr;
+      gap: 2rem;
+      align-items: start;
+    }
+
+    .profile-card {
+      background-color: var(--bg-secondary);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 1.75rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+      box-shadow: var(--shadow-card);
+      position: sticky;
+      top: calc(var(--header-height) + 20px);
+    }
+
+    .profile-header {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .avatar-frame {
+      width: 86px;
+      height: 86px;
+      border-radius: 50%;
+      padding: 3px;
+      background: linear-gradient(135deg, var(--accent-sky), var(--accent-emerald));
+      flex-shrink: 0;
+    }
+
+    .avatar-img {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+      background-color: var(--bg-primary);
+    }
+
+    .profile-name {
+      font-family: var(--font-display);
+      font-size: 1.3rem;
+      font-weight: 800;
+      line-height: 1.2;
+    }
+
+    .profile-role {
+      color: var(--accent-sky);
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-top: 0.2rem;
+    }
+
+    .profile-bio {
+      color: var(--text-secondary);
+      font-size: 0.94rem;
+    }
+
+    .profile-stats {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.75rem;
+    }
+
+    .stat-box {
+      background-color: rgba(15, 23, 42, 0.65);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-sm);
+      padding: 0.8rem;
+    }
+
+    .stat-value {
+      font-family: var(--font-display);
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: var(--text-primary);
+    }
+
+    .stat-label {
+      font-size: 0.76rem;
+      color: var(--text-muted);
+    }
+
+    .profile-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 0.7rem;
+    }
+
+    .profile-actions .btn {
+      width: 100%;
+    }
+
+    /* Línea de tiempo de experiencia laboral */
+    .timeline-card {
+      background-color: var(--bg-secondary);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: clamp(1.4rem, 3vw, 2.25rem);
+      box-shadow: var(--shadow-card);
+    }
+
+    .timeline-heading {
+      font-family: var(--font-display);
+      font-size: 1.3rem;
+      font-weight: 800;
+      margin-bottom: 1.65rem;
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+    }
+
+    .timeline {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      gap: 1.85rem;
+      padding-left: 1.65rem;
+    }
+
+    .timeline::before {
+      content: "";
+      position: absolute;
+      left: 6px;
+      top: 6px;
+      bottom: 6px;
+      width: 2px;
+      background: linear-gradient(180deg, var(--accent-sky), var(--accent-emerald), rgba(148, 163, 184, 0.2));
+    }
+
+    .timeline-item {
+      position: relative;
+    }
+
+    .timeline-item::before {
+      content: "";
+      position: absolute;
+      left: -1.65rem;
+      top: 6px;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background-color: var(--bg-primary);
+      border: 3px solid var(--accent-sky);
+      box-shadow: 0 0 0 4px rgba(56, 189, 248, 0.16);
+    }
+
+    .timeline-period {
+      display: inline-block;
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: #6EE7B7;
+      background-color: rgba(16, 185, 129, 0.14);
+      padding: 0.2rem 0.65rem;
+      border-radius: var(--radius-pill);
+      margin-bottom: 0.45rem;
+    }
+
+    .timeline-role {
+      font-family: var(--font-display);
+      font-size: 1.12rem;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+
+    .timeline-company {
+      color: var(--accent-sky);
+      font-weight: 600;
+      font-size: 0.92rem;
+      margin-bottom: 0.6rem;
+    }
+
+    .timeline-achievements {
+      display: flex;
+      flex-direction: column;
+      gap: 0.45rem;
+      color: var(--text-secondary);
+      font-size: 0.93rem;
+    }
+
+    .timeline-achievements li {
+      position: relative;
+      padding-left: 1.1rem;
+    }
+
+    .timeline-achievements li::before {
+      content: "▸";
+      position: absolute;
+      left: 0;
+      color: var(--accent-sky);
+      font-weight: 700;
+    }
+
+    /* ==========================================================================
+       9. CONTACTO Y FOOTER
+       ========================================================================== */
+    .contact-banner {
+      background: linear-gradient(135deg, rgba(30, 41, 59, 0.96), rgba(15, 23, 42, 0.96));
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-lg);
+      padding: clamp(1.8rem, 4vw, 3rem);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.5rem;
+      box-shadow: var(--shadow-card);
+    }
+
+    .contact-copy {
+      max-width: 600px;
+      display: flex;
+      flex-direction: column;
+      gap: 0.55rem;
+    }
+
+    .contact-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+    }
+
+    .site-footer {
+      border-top: 1px solid var(--border-subtle);
+      padding-block: 2.5rem;
+      background-color: rgba(15, 23, 42, 0.72);
+    }
+
+    .footer-inner {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.25rem;
+    }
+
+    .social-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.7rem;
+    }
+
+    .social-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.55rem 1rem;
+      border-radius: var(--radius-pill);
+      background-color: var(--bg-secondary);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-secondary);
+      font-size: 0.88rem;
+      font-weight: 600;
+      transition: all var(--transition-fast);
+    }
+
+    .social-link:hover {
+      color: var(--text-primary);
+      border-color: var(--accent-sky);
+      background-color: var(--bg-elevated);
+    }
+
+    .footer-credits {
+      color: var(--text-muted);
+      font-size: 0.86rem;
+    }
+
+    /* ==========================================================================
+       10. SISTEMA DE MODALES ACCESIBLES (LIGHTBOX MULTIMEDIA)
+       ========================================================================== */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      z-index: 1000;
+      background-color: rgba(2, 6, 23, 0.86);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: clamp(0.75rem, 2.5vw, 1.75rem);
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity var(--transition-base), visibility var(--transition-base);
+    }
+
+    .modal-backdrop.is-open {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .modal-dialog {
+      width: 100%;
+      max-width: 960px;
+      max-height: 92vh;
+      background-color: var(--bg-secondary);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-modal);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      transform: translateY(14px) scale(0.98);
+      transition: transform var(--transition-base);
+    }
+
+    .modal-backdrop.is-open .modal-dialog {
+      transform: translateY(0) scale(1);
+    }
+
+    /* Variantes de tamaño por tipo de contenido */
+    .modal-dialog.modal--reel {
+      max-width: 460px;
+    }
+
+    .modal-dialog.modal--pdf {
+      max-width: min(1180px, 96vw);
+      height: 90vh;
+    }
+
+    .modal-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 1rem 1.25rem;
+      border-bottom: 1px solid var(--border-subtle);
+      background-color: rgba(15, 23, 42, 0.55);
+      flex-shrink: 0;
+    }
+
+    .modal-heading-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
+    }
+
+    .modal-kicker {
+      font-size: 0.76rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--accent-sky);
+    }
+
+    .modal-title {
+      font-family: var(--font-display);
+      font-size: 1.15rem;
+      font-weight: 800;
+      line-height: 1.25;
+    }
+
+    .modal-close {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background-color: rgba(15, 23, 42, 0.8);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-primary);
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+      transition: background-color var(--transition-fast), border-color var(--transition-fast);
+    }
+
+    .modal-close:hover {
+      background-color: rgba(56, 189, 248, 0.18);
+      border-color: var(--accent-sky);
+    }
+
+    .modal-body {
+      padding: 1.25rem;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      flex: 1 1 auto;
+    }
+
+    .modal-dialog.modal--pdf .modal-body {
+      padding: 0;
+      overflow: hidden;
+    }
+
+    .modal-description {
+      font-size: 0.93rem;
+      color: var(--text-secondary);
+    }
+
+    /* Contenedores multimedia responsivos dentro del modal */
+    .embed-9-16 {
+      position: relative;
+      width: 100%;
+      max-width: 360px;
+      margin-inline: auto;
+      aspect-ratio: 9 / 16;
+      background-color: #020617;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      border: 1px solid var(--border-subtle);
+    }
+
+    .embed-16-9 {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      background-color: #020617;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      border: 1px solid var(--border-subtle);
+    }
+
+    .embed-9-16 iframe,
+    .embed-9-16 video,
+    .embed-16-9 iframe,
+    .embed-16-9 video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+      object-fit: cover;
+    }
+
+    /* Carrusel interactivo dentro del modal */
+    .carousel-stage {
+      position: relative;
+      background-color: #020617;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-subtle);
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 300px;
+      max-height: 62vh;
+      touch-action: pan-y;
+    }
+
+    .carousel-image {
+      max-height: 62vh;
+      width: 100%;
+      object-fit: contain;
+    }
+
+    .carousel-nav-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background-color: rgba(15, 23, 42, 0.86);
+      border: 1px solid rgba(248, 250, 252, 0.25);
+      color: var(--text-primary);
+      display: grid;
+      place-items: center;
+      transition: background-color var(--transition-fast), transform var(--transition-fast);
+    }
+
+    .carousel-nav-btn:hover {
+      background-color: var(--accent-sky);
+      color: var(--accent-on-bright);
+    }
+
+    .carousel-nav-btn--prev { left: 12px; }
+    .carousel-nav-btn--next { right: 12px; }
+
+    .carousel-controls {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+    }
+
+    .carousel-dots {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .carousel-dot {
+      width: 11px;
+      height: 11px;
+      border-radius: var(--radius-pill);
+      background-color: rgba(148, 163, 184, 0.4);
+      transition: width var(--transition-fast), background-color var(--transition-fast);
+    }
+
+    .carousel-dot[aria-current="true"] {
+      width: 28px;
+      background-color: var(--accent-sky);
+    }
+
+    .carousel-caption-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+      font-size: 0.88rem;
+      color: var(--text-secondary);
+    }
+
+    /* Visor de PDF */
+    .pdf-toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+      padding: 0.75rem 1.25rem;
+      background-color: rgba(15, 23, 42, 0.75);
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .pdf-toolbar-info {
+      font-size: 0.84rem;
+      color: var(--text-secondary);
+    }
+
+    .pdf-toolbar-actions {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.55rem;
+    }
+
+    .pdf-frame-wrap {
+      position: relative;
+      flex: 1 1 auto;
+      background-color: #0B1222;
+      min-height: 400px;
+    }
+
+    .pdf-frame {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+      background-color: #FFFFFF;
+    }
+
+    /* ==========================================================================
+       11. RESPONSIVIDAD (TABLETS Y MÓVILES)
+       ========================================================================== */
+    @media (max-width: 1024px) {
+      .media-card[data-format="reel"],
+      .media-card[data-format="carousel"],
+      .media-card[data-format="pdf"],
+      .media-card[data-format="presentation"] {
+        grid-column: span 6;
+        grid-row: span 1;
+      }
+
+      .media-card[data-format="video"] {
+        grid-column: span 12;
+      }
+
+      .portfolio-grid.is-filtered .media-card[data-format="reel"],
+      .portfolio-grid.is-filtered .media-card[data-format="video"] {
+        grid-column: span 6;
+      }
+
+      .cv-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .profile-card {
+        position: static;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .nav-desktop,
+      .header-actions .btn-whatsapp {
+        display: none;
+      }
+
+      .menu-toggle {
+        display: inline-flex;
+      }
+
+      .portfolio-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .media-card,
+      .media-card[data-format="reel"],
+      .media-card[data-format="video"],
+      .media-card[data-format="carousel"],
+      .media-card[data-format="pdf"],
+      .media-card[data-format="presentation"],
+      .portfolio-grid.is-filtered .media-card[data-format="reel"],
+      .portfolio-grid.is-filtered .media-card[data-format="video"] {
+        grid-column: 1 / -1;
+        grid-row: span 1;
+      }
+
+      .modal-dialog.modal--pdf {
+        height: 94vh;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Enlace de accesibilidad para saltar directamente al contenido -->
+  <a href="#contenido-principal" class="skip-link">Saltar al contenido principal</a>
+
+  <!-- Contenedor principal (recibe aria-hidden="true" al abrir un modal) -->
+  <div id="page-wrapper">
+    <!-- =====================================================================
+         HEADER FIJO Y ACCESIBLE
+         ===================================================================== -->
+    <header class="site-header" role="banner">
+      <div class="container header-inner">
+        <a href="#inicio" class="brand" aria-label="Inicio - Portafolio de Diseño Gráfico y Multimedia">
+          <span class="brand-mark" aria-hidden="true" id="brand-initials">AM</span>
+          <span>
+            <span id="brand-name">William Duque</span>
+            <span class="brand-sub">Diseño Gráfico &amp; Multimedia</span>
+          </span>
+        </a>
+
+        <nav class="nav-desktop" aria-label="Navegación principal">
+          <a href="#portafolio" class="nav-link">Portafolio</a>
+          <a href="#habilidades" class="nav-link">Habilidades</a>
+          <a href="#cv" class="nav-link">CV</a>
+          <a href="#contacto" class="nav-link">Contacto</a>
+        </nav>
+
+        <div class="header-actions">
+          <a
+            href="#"
+            class="btn btn-whatsapp btn-sm js-whatsapp-link"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Abrir chat directo en WhatsApp (se abre en una nueva pestaña)"
+          >
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M20.52 3.48A11.86 11.86 0 0 0 12.06 0C5.49 0 .14 5.35.14 11.92c0 2.1.55 4.15 1.59 5.96L0 24l6.29-1.65a11.87 11.87 0 0 0 5.77 1.47h.01c6.57 0 11.92-5.35 11.92-11.92 0-3.18-1.24-6.18-3.47-8.42ZM12.07 21.8h-.01a9.87 9.87 0 0 1-5.04-1.38l-.36-.21-3.73.98 1-3.64-.24-.37a9.86 9.86 0 0 1-1.52-5.26c0-5.46 4.44-9.9 9.91-9.9 2.64 0 5.13 1.03 7 2.9a9.85 9.85 0 0 1 2.9 7.01c0 5.46-4.45 9.87-9.91 9.87Zm5.43-7.4c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.48-.89-.79-1.49-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48 0 1.46 1.07 2.88 1.22 3.08.15.2 2.1 3.21 5.09 4.5.71.31 1.27.49 1.7.63.72.23 1.37.2 1.88.12.57-.09 1.76-.72 2.01-1.41.25-.7.25-1.29.17-1.42-.07-.12-.27-.2-.57-.35Z"/>
+            </svg>
+            Chat en WhatsApp
+          </a>
+
+          <button
+            type="button"
+            class="menu-toggle"
+            id="menu-toggle"
+            aria-label="Abrir menú de navegación"
+            aria-expanded="false"
+            aria-controls="mobile-drawer"
+          >
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true">
+              <line x1="3" y1="6" x2="21" y2="6" />
+              <line x1="3" y1="12" x2="21" y2="12" />
+              <line x1="3" y1="18" x2="21" y2="18" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Menú móvil desplegable -->
+    <div id="mobile-drawer" class="mobile-drawer" aria-label="Menú móvil">
+      <nav>
+        <a href="#portafolio" class="nav-link js-mobile-link">Portafolio</a>
+        <a href="#habilidades" class="nav-link js-mobile-link">Habilidades</a>
+        <a href="#cv" class="nav-link js-mobile-link">CV</a>
+        <a href="#contacto" class="nav-link js-mobile-link">Contacto</a>
+        <a
+          href="#"
+          class="btn btn-whatsapp js-whatsapp-link"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Chat en WhatsApp
+        </a>
+      </nav>
+    </div>
+
+    <main id="contenido-principal">
+      <!-- ===================================================================
+           HERO SECTION
+           =================================================================== -->
+      <section id="inicio" class="hero" aria-labelledby="hero-title">
+        <div class="container">
+          <div class="hero-card">
+            <div class="hero-content">
+              <div class="availability-pill">
+                <span class="status-dot" aria-hidden="true"></span>
+                Disponible para proyectos freelance y colaboraciones
+              </div>
+
+              <h1 id="hero-title" class="hero-title">
+                Diseño visual y <span class="accent-gradient">narrativa multimedia</span> que convierten atención en impacto real.
+              </h1>
+
+              <p class="hero-description">
+                Diseñador Gráfico y Creador de Contenido Multimedia enfocado en piezas de alto rendimiento: desde Reels verticales y motion graphics dinámicos hasta identidad de marca, carruseles estratégicos y presentaciones corporativas.
+              </p>
+
+              <ul class="specialty-badges" aria-label="Especialidades principales">
+                <li class="badge"><span class="badge-dot" aria-hidden="true"></span>Social Media</li>
+                <li class="badge"><span class="badge-dot" aria-hidden="true"></span>Motion Graphics</li>
+                <li class="badge"><span class="badge-dot" aria-hidden="true"></span>Branding</li>
+                <li class="badge"><span class="badge-dot" aria-hidden="true"></span>Diseño Editorial</li>
+              </ul>
+
+              <div class="hero-cta">
+                <a href="#portafolio" class="btn btn-primary">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <rect x="3" y="3" width="7" height="7" rx="1.5" />
+                    <rect x="14" y="3" width="7" height="7" rx="1.5" />
+                    <rect x="14" y="14" width="7" height="7" rx="1.5" />
+                    <rect x="3" y="14" width="7" height="7" rx="1.5" />
+                  </svg>
+                  Ver Trabajos
+                </a>
+                <a href="#cv" class="btn btn-secondary">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                    <polyline points="14 2 14 8 20 8" />
+                    <line x1="16" y1="13" x2="8" y2="13" />
+                    <line x1="16" y1="17" x2="8" y2="17" />
+                  </svg>
+                  Ver CV
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================================================================
+           PORTAFOLIO INTERACTIVO + SISTEMA DE FILTROS
+           =================================================================== -->
+      <section id="portafolio" aria-labelledby="portafolio-title">
+        <div class="container">
+          <div class="section-header">
+            <span class="section-kicker">Portafolio Multimedia</span>
+            <h2 id="portafolio-title" class="section-title">Proyectos interactivos in-situ</h2>
+            <p class="section-subtitle">
+              Explora reels, videos horizontales, carruseles gráficos, brochures y presentaciones directamente aquí sin salir de la plataforma.
+            </p>
+          </div>
+
+          <!-- Barra de filtros accesible -->
+          <div
+            class="filter-bar"
+            role="group"
+            aria-label="Filtrar proyectos por categoría"
+            id="filter-bar"
+          >
+            <!-- Se renderizan dinámicamente con sus contadores desde JS -->
+          </div>
+
+          <!-- Región en vivo para lectores de pantalla -->
+          <p id="filter-status" class="sr-only" aria-live="polite"></p>
+
+          <!-- Grilla dinámica de proyectos -->
+          <div id="portfolio-grid" class="portfolio-grid">
+            <!-- Tarjetas generadas dinámicamente desde PORTFOLIO_ITEMS -->
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================================================================
+           HABILIDADES DE SOFTWARE
+           =================================================================== -->
+      <section id="habilidades" aria-labelledby="habilidades-title">
+        <div class="container">
+          <div class="section-header">
+            <span class="section-kicker">Stack Creativo</span>
+            <h2 id="habilidades-title" class="section-title">Herramientas y habilidades de software</h2>
+            <p class="section-subtitle">
+              Flujo de trabajo ágil integrando producción audiovisual, diseño vectorial, maquetación editorial y prototipado digital.
+            </p>
+          </div>
+
+          <div id="skills-grid" class="skills-grid">
+            <!-- Habilidades renderizadas dinámicamente -->
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================================================================
+           SECCIÓN CV INTEGRADA (PERFIL + EXPERIENCIA)
+           =================================================================== -->
+      <section id="cv" aria-labelledby="cv-title">
+        <div class="container">
+          <div class="section-header">
+            <span class="section-kicker">Trayectoria Profesional</span>
+            <h2 id="cv-title" class="section-title">Currículum Vitae</h2>
+            <p class="section-subtitle">
+              Experiencia comprobada liderando identidad visual, producción de video corto/largo y comunicación corporativa para marcas digitales.
+            </p>
+          </div>
+
+          <div class="cv-layout">
+            <!-- Tarjeta de Perfil -->
+            <aside class="profile-card" aria-label="Resumen profesional y descarga de CV">
+              <div class="profile-header">
+                <div class="avatar-frame">
+                  <img
+                    id="profile-avatar"
+                    src="assets/images/avatar.jpg"
+                    alt="Retrato profesional del diseñador"
+                    class="avatar-img"
+                    width="86"
+                    height="86"
+                  />
+                </div>
+                <div>
+                  <h3 id="profile-name" class="profile-name">Alex Morales</h3>
+                  <p id="profile-role" class="profile-role">Diseñador Gráfico &amp; Creador Multimedia</p>
+                </div>
+              </div>
+
+              <p id="profile-bio" class="profile-bio">
+                Con más de 6 años transformando ideas en sistemas visuales memorables y contenido audiovisual de alto alcance. Especializado en combinar dirección de arte, edición ágil y estrategia editorial para marcas en crecimiento.
+              </p>
+
+              <div class="profile-stats">
+                <div class="stat-box">
+                  <div class="stat-value">+6 años</div>
+                  <div class="stat-label">Experiencia creativa</div>
+                </div>
+                <div class="stat-box">
+                  <div class="stat-value">+180</div>
+                  <div class="stat-label">Campañas &amp; piezas</div>
+                </div>
+              </div>
+
+              <div class="profile-actions">
+                <a
+                  id="cv-download-btn"
+                  href="assets/docs/cv-disenador.pdf"
+                  download
+                  class="btn btn-primary"
+                >
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                    <polyline points="7 10 12 15 17 10" />
+                    <line x1="12" y1="15" x2="12" y2="3" />
+                  </svg>
+                  Descargar CV en PDF
+                </a>
+
+                <button
+                  type="button"
+                  id="cv-preview-btn"
+                  class="btn btn-secondary"
+                >
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                    <circle cx="12" cy="12" r="3" />
+                  </svg>
+                  Ver CV en pantalla completa
+                </button>
+
+                <a
+                  href="#"
+                  class="btn btn-whatsapp js-whatsapp-link"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <path d="M20.52 3.48A11.86 11.86 0 0 0 12.06 0C5.49 0 .14 5.35.14 11.92c0 2.1.55 4.15 1.59 5.96L0 24l6.29-1.65a11.87 11.87 0 0 0 5.77 1.47h.01c6.57 0 11.92-5.35 11.92-11.92 0-3.18-1.24-6.18-3.47-8.42ZM12.07 21.8h-.01a9.87 9.87 0 0 1-5.04-1.38l-.36-.21-3.73.98 1-3.64-.24-.37a9.86 9.86 0 0 1-1.52-5.26c0-5.46 4.44-9.9 9.91-9.9 2.64 0 5.13 1.03 7 2.9a9.85 9.85 0 0 1 2.9 7.01c0 5.46-4.45 9.87-9.91 9.87Zm5.43-7.4c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.48-.89-.79-1.49-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48 0 1.46 1.07 2.88 1.22 3.08.15.2 2.1 3.21 5.09 4.5.71.31 1.27.49 1.7.63.72.23 1.37.2 1.88.12.57-.09 1.76-.72 2.01-1.41.25-.7.25-1.29.17-1.42-.07-.12-.27-.2-.57-.35Z"/>
+                  </svg>
+                  Hablemos por WhatsApp
+                </a>
+              </div>
+            </aside>
+
+            <!-- Línea de Tiempo de Experiencia -->
+            <div class="timeline-card">
+              <h3 class="timeline-heading">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#38BDF8" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <rect x="2" y="7" width="20" height="14" rx="2" ry="2" />
+                  <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" />
+                </svg>
+                Experiencia Laboral &amp; Logros
+              </h3>
+
+              <ol id="experience-timeline" class="timeline">
+                <!-- Experiencia renderizada dinámicamente -->
+              </ol>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================================================================
+           SECCIÓN CONTACTO
+           =================================================================== -->
+      <section id="contacto" aria-labelledby="contacto-title">
+        <div class="container">
+          <div class="contact-banner">
+            <div class="contact-copy">
+              <span class="section-kicker">Contacto Directo</span>
+              <h2 id="contacto-title" class="section-title">¿Listo para potenciar tu marca?</h2>
+              <p class="section-subtitle">
+                Escríbeme por WhatsApp o correo para cotizar campañas de video, diseño gráfico, identidad corporativa o presentaciones ejecutivas.
+              </p>
+            </div>
+
+            <div class="contact-actions">
+              <a
+                href="#"
+                class="btn btn-whatsapp js-whatsapp-link"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <path d="M20.52 3.48A11.86 11.86 0 0 0 12.06 0C5.49 0 .14 5.35.14 11.92c0 2.1.55 4.15 1.59 5.96L0 24l6.29-1.65a11.87 11.87 0 0 0 5.77 1.47h.01c6.57 0 11.92-5.35 11.92-11.92 0-3.18-1.24-6.18-3.47-8.42ZM12.07 21.8h-.01a9.87 9.87 0 0 1-5.04-1.38l-.36-.21-3.73.98 1-3.64-.24-.37a9.86 9.86 0 0 1-1.52-5.26c0-5.46 4.44-9.9 9.91-9.9 2.64 0 5.13 1.03 7 2.9a9.85 9.85 0 0 1 2.9 7.01c0 5.46-4.45 9.87-9.91 9.87Zm5.43-7.4c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.48-.89-.79-1.49-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48 0 1.46 1.07 2.88 1.22 3.08.15.2 2.1 3.21 5.09 4.5.71.31 1.27.49 1.7.63.72.23 1.37.2 1.88.12.57-.09 1.76-.72 2.01-1.41.25-.7.25-1.29.17-1.42-.07-.12-.27-.2-.57-.35Z"/>
+                </svg>
+                Escribir por WhatsApp
+              </a>
+
+              <a id="contact-email-btn" href="mailto:hola@tudominio.com" class="btn btn-secondary">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                  <polyline points="22,6 12,13 2,6" />
+                </svg>
+                Enviar Correo
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- =====================================================================
+         FOOTER
+         ===================================================================== -->
+    <footer class="site-footer" role="contentinfo">
+      <div class="container footer-inner">
+        <div class="social-links" id="social-links" aria-label="Redes sociales profesionales">
+          <!-- Enlaces generados desde SITE_CONFIG -->
+        </div>
+
+        <p class="footer-credits">
+          &copy; <span id="footer-year"></span> <strong id="footer-author">Alex Morales</strong>. Diseñado con accesibilidad WCAG 2.1 AA.
+        </p>
+      </div>
+    </footer>
+  </div>
+
+  <!-- =======================================================================
+       MODAL UNIVERSAL ACCESIBLE (REELS, VIDEOS 16:9, CARRUSELES Y VISOR PDF)
+       ======================================================================= -->
+  <div
+    id="media-modal"
+    class="modal-backdrop"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="modal-title"
+    aria-describedby="modal-desc"
+    hidden
+  >
+    <div id="modal-dialog" class="modal-dialog">
+      <div class="modal-header">
+        <div class="modal-heading-group">
+          <span id="modal-kicker" class="modal-kicker">Categoría</span>
+          <h2 id="modal-title" class="modal-title">Título del proyecto</h2>
+        </div>
+
+        <button
+          type="button"
+          id="modal-close-btn"
+          class="modal-close"
+          aria-label="Cerrar ventana modal"
+        >
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true">
+            <line x1="18" y1="6" x2="6" y2="18" />
+            <line x1="6" y1="6" x2="18" y2="18" />
+          </svg>
+        </button>
+      </div>
+
+      <div id="modal-body" class="modal-body">
+        <!-- Contenido multimedia inyectado dinámicamente -->
+      </div>
+    </div>
+  </div>
+
+  <!-- =======================================================================
+       JAVASCRIPT MODULAR: CONFIGURACIÓN, RENDERIZADO Y ACCESIBILIDAD
+       ======================================================================= -->
+  <script>
+    (() => {
+      'use strict';
+
+      /* =====================================================================
+         A. CONFIGURACIÓN PRINCIPAL (EDITA AQUÍ TUS DATOS, RUTAS Y ENLACES)
+         ===================================================================== */
+      const SITE_CONFIG = {
+        name: 'Alex Morales',
+        initials: 'AM',
+        role: 'Diseñador Gráfico & Creador Multimedia',
+        bio: 'Con más de 6 años transformando ideas en sistemas visuales memorables y contenido audiovisual de alto alcance. Especializado en combinar dirección de arte, edición ágil y estrategia editorial para marcas en crecimiento.',
+        avatar: 'assets/images/avatar.jpg',
+        cvPdf: 'assets/docs/cv-disenador.pdf',
+        // Reemplaza por tu número con código de país (sin signos + ni espacios)
+        whatsappNumber: '573001234567',
+        whatsappMessage: 'Hola Alex, vi tu portafolio web y me gustaría cotizar un proyecto multimedia.',
+        email: 'hola@alexmorales.design',
+        socials: [
+          { label: 'LinkedIn', url: 'https://www.linkedin.com/in/tu-usuario', icon: 'linkedin' },
+          { label: 'Behance', url: 'https://www.behance.net/tu-usuario', icon: 'behance' },
+          { label: 'Instagram', url: 'https://www.instagram.com/tu-usuario', icon: 'instagram' }
+        ]
+      };
+
+      /* =====================================================================
+         B. CATÁLOGO DE PROYECTOS (REEMPLAZA TUS ARCHIVOS EN assets/ Y LINKS)
+         Categorías válidas:
+           - 'reels'          (Reels & TikToks 9:16)
+           - 'video'          (Video Horizontal 16:9)
+           - 'carruseles'     (Carruseles y Gráfica)
+           - 'brochures'      (Brochures & PDF)
+           - 'presentaciones' (Presentaciones)
+         ===================================================================== */
+      const PORTFOLIO_ITEMS = [
+        {
+          id: 'reel-1',
+          category: 'reels',
+          format: 'reel',
+          badge: 'Reel 9:16',
+          duration: '0:37',
+          title: 'Campaña de Soluciones Inteligentes para RETAIL',
+          client: 'Geovision de Colombia',
+          description: 'Edición dinámica con transiciones de velocidad y edición sonora, optimizada para retención en redes y CTA de clientes potenciales.',
+          tools: 'Premiere Pro',
+          thumbnail: 'assets/images/portada-reel1.jpg',
+          // Soporta: 'iframe' (YouTube Shorts / TikTok embed) o 'video' (MP4 local)
+          mediaType: 'iframe',
+          embedUrl: 'https://www.youtube.com/embed/VYnTM3lu6mM?autoplay=1&rel=0'
+          // Ejemplo si prefieres archivo local HTML5:
+          // mediaType: 'video',
+          // videoUrl: 'assets/videos/reel-campana.mp4'
+        },
+        {
+          id: 'video-1',
+          category: 'video',
+          format: 'video',
+          badge: 'Video 16:9',
+          duration: '2:15',
+          title: 'Showreel Corporativo & Motion 2026',
+          client: 'Compilación Comercial',
+          description: 'Pieza audiovisual panorámica en 4K combinando animación 2D/3D, color grading cinematográfico y dirección de arte para marcas tecnológicas.',
+          tools: 'Premiere Pro • After Effects • DaVinci',
+          thumbnail: 'assets/images/portada-video1.jpg',
+          mediaType: 'iframe',
+          embedUrl: 'https://www.youtube.com/embed/LXb3EKWsInQ?autoplay=1&rel=0'
+        },
+        {
+          id: 'carrusel-1',
+          category: 'carruseles',
+          format: 'carousel',
+          badge: 'Carrusel • 4 láminas',
+          title: 'Sistema Visual para Redes B2B',
+          client: 'NovaCloud Tech',
+          description: 'Serie editorial deslizable diseñada para Instagram y LinkedIn con jerarquía tipográfica clara y narrativa paso a paso orientada a conversión.',
+          tools: 'Illustrator • Figma • Photoshop',
+          thumbnail: 'assets/images/carrusel-1a.jpg',
+          slides: [
+            { src: 'assets/images/carrusel-1a.jpg', caption: 'Lámina 1: Portada de alto impacto y gancho visual' },
+            { src: 'assets/images/carrusel-1b.jpg', caption: 'Lámina 2: Desglose de propuesta de valor con iconografía' },
+            { src: 'assets/images/carrusel-1c.jpg', caption: 'Lámina 3: Caso de éxito y métricas clave' },
+            { src: 'assets/images/carrusel-1d.jpg', caption: 'Lámina 4: Llamado a la acción final (CTA)' }
+          ]
+        },
+        {
+          id: 'reel-2',
+          category: 'reels',
+          format: 'reel',
+          badge: 'TikTok 9:16',
+          duration: '0:35',
+          title: 'Motion Branding para App Fintech',
+          client: 'Kora Pay',
+          description: 'Animación de micro-interacciones y beneficios del producto en formato vertical para pauta en TikTok Ads y YouTube Shorts.',
+          tools: 'After Effects • Figma',
+          thumbnail: 'assets/images/portada-reel2.jpg',
+          mediaType: 'iframe',
+          embedUrl: 'https://www.youtube.com/embed/ScMzIvxBSi4?autoplay=1&rel=0'
+        },
+        {
+          id: 'brochure-1',
+          category: 'brochures',
+          format: 'pdf',
+          badge: 'Brochure PDF',
+          title: 'Brochure Comercial de Soluciones',
+          client: 'Aether Arquitectura',
+          description: 'Catálogo editorial multipágina preparado para distribución digital e impresión, con retícula suiza, infografías y acabados limpios.',
+          tools: 'InDesign • Illustrator • Photoshop',
+          thumbnail: 'assets/images/portada-brochure.jpg',
+          pdfUrl: 'assets/docs/brochure.pdf'
+        },
+        {
+          id: 'presentacion-1',
+          category: 'presentaciones',
+          format: 'presentation',
+          badge: 'Presentación PDF',
+          title: 'Pitch Deck Corporativo & Brandbook',
+          client: 'Vértice Studio',
+          description: 'Presentación ejecutiva de 24 diapositivas enfocada en inversionistas, con visualización de datos, lineamientos de marca y narrativa visual.',
+          tools: 'Figma • InDesign • Illustrator',
+          thumbnail: 'assets/images/portada-presentacion.jpg',
+          pdfUrl: 'assets/docs/presentacion-corporativa.pdf'
+        },
+        {
+          id: 'video-2',
+          category: 'video',
+          format: 'video',
+          badge: 'Video 16:9',
+          duration: '1:48',
+          title: 'Documental Corto: Detrás de la Marca',
+          client: 'Café Origen Altura',
+          description: 'Storytelling audiovisual sobre el proceso artesanal del café, con corrección de color cálida, subtítulos integrados y mezcla de audio.',
+          tools: 'Premiere Pro • Audition • DaVinci',
+          thumbnail: 'assets/images/portada-video2.jpg',
+          mediaType: 'iframe',
+          embedUrl: 'https://player.vimeo.com/video/76979871?autoplay=1'
+        },
+        {
+          id: 'carrusel-2',
+          category: 'carruseles',
+          format: 'carousel',
+          badge: 'Gráfica • 3 láminas',
+          title: 'Identidad Visual y Packaging Café',
+          client: 'Tostadores Andinos',
+          description: 'Exploración gráfica de etiquetas, paleta cromática y aplicaciones en empaques sostenibles.',
+          tools: 'Illustrator • Photoshop',
+          thumbnail: 'assets/images/carrusel-2a.jpg',
+          slides: [
+            { src: 'assets/images/carrusel-2a.jpg', caption: 'Lámina 1: Logotipo principal y retícula constructiva' },
+            { src: 'assets/images/carrusel-2b.jpg', caption: 'Lámina 2: Sistema de empaques y mockups' },
+            { src: 'assets/images/carrusel-2c.jpg', caption: 'Lámina 3: Aplicaciones digitales y señalética' }
+          ]
+        }
+      ];
+
+      /* =====================================================================
+         C. HABILIDADES DE SOFTWARE Y EXPERIENCIA LABORAL (CV)
+         ===================================================================== */
+      const SKILLS_DATA = [
+        { abbr: 'Pr', name: 'Adobe Premiere Pro', role: 'Edición audiovisual & Reels', level: 'Experto', percent: 95, accent: 'sky' },
+        { abbr: 'Ae', name: 'Adobe After Effects', role: 'Motion Graphics & VFX', level: 'Avanzado', percent: 90, accent: 'sky' },
+        { abbr: 'Ai', name: 'Adobe Illustrator', role: 'Branding & Ilustración vectorial', level: 'Experto', percent: 96, accent: 'emerald' },
+        { abbr: 'Ps', name: 'Adobe Photoshop', role: 'Retoque, fotomontaje & Social Media', level: 'Experto', percent: 94, accent: 'sky' },
+        { abbr: 'Id', name: 'Adobe InDesign', role: 'Brochures, catálogos & Editorial', level: 'Avanzado', percent: 88, accent: 'emerald' },
+        { abbr: 'Fg', name: 'Figma', role: 'UI, Presentaciones & Sistemas de diseño', level: 'Avanzado', percent: 92, accent: 'emerald' },
+        { abbr: 'Dr', name: 'DaVinci Resolve', role: 'Corrección y etalonaje de color', level: 'Intermedio+', percent: 82, accent: 'sky' },
+        { abbr: 'Cc', name: 'CapCut Pro / Social', role: 'Edición ágil para TikTok & Shorts', level: 'Experto', percent: 95, accent: 'emerald' }
+      ];
+
+      const EXPERIENCE_DATA = [
+        {
+          period: '2023 — Presente',
+          role: 'Diseñador Multimedia Senior & Director Creativo',
+          company: 'Agencia Digital Pulso Creativo',
+          achievements: [
+            'Lideré la producción de +120 Reels y campañas de video corto que incrementaron el alcance orgánico promedio en un 68%.',
+            'Estandaricé plantillas de Motion Graphics en After Effects, reduciendo los tiempos de entrega de campaña en un 35%.',
+            'Dirigí el rediseño de identidad y brochures comerciales para 14 cuentas corporativas B2B.'
+          ]
+        },
+        {
+          period: '2021 — 2023',
+          role: 'Diseñador Gráfico & Creador de Contenido',
+          company: 'Estudio Marca Viva',
+          achievements: [
+            'Diseñé sistemas de carruseles educativos y parrillas gráficas para Instagram y LinkedIn de clientes SaaS y retail.',
+            'Elaboré presentaciones ejecutivas y pitch decks interactivos en Figma e InDesign para rondas comerciales.',
+            'Produje piezas audiovisuales promocionales 16:9 y tutoriales animados de producto.'
+          ]
+        },
+        {
+          period: '2019 — 2021',
+          role: 'Diseñador Editorial & Visual Jr.',
+          company: 'Editorial & Comunicaciones Nexo',
+          achievements: [
+            'Maqueté catálogos, informes anuales y brochures digitales optimizados para lectura móvil e impresión offset.',
+            'Apoyé la creación de manuales de marca y librerías de activos gráficos reutilizables.'
+          ]
+        }
+      ];
+
+      const FILTER_CATEGORIES = [
+        { id: 'all', label: 'Todos' },
+        { id: 'reels', label: 'Reels & TikToks' },
+        { id: 'video', label: 'Video Horizontal' },
+        { id: 'carruseles', label: 'Carruseles' },
+        { id: 'brochures', label: 'Brochures & PDF' },
+        { id: 'presentaciones', label: 'Presentaciones' }
+      ];
+
+      /* =====================================================================
+         D. UTILIDADES (RESPALDO SVG PARA IMÁGENES LOCALES Y SEGURIDAD)
+         ===================================================================== */
+      function buildPlaceholderSvg(label, pathHint, ratio = '16:9') {
+        const dims = {
+          '9:16': { w: 540, h: 960 },
+          '16:9': { w: 960, h: 540 },
+          '4:3':  { w: 800, h: 600 },
+          '1:1':  { w: 400, h: 400 }
+        }[ratio] || { w: 800, h: 500 };
+
+        const safeLabel = String(label).replace(/[&<>"]/g, '');
+        const safePath = String(pathHint).replace(/[&<>"]/g, '');
+
+        const svg = `
+          <svg xmlns="http://www.w3.org/2000/svg" width="${dims.w}" height="${dims.h}" viewBox="0 0 ${dims.w} ${dims.h}">
+            <defs>
+              <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="#1E293B"/>
+                <stop offset="100%" stop-color="#0F172A"/>
+              </linearGradient>
+            </defs>
+            <rect width="100%" height="100%" fill="url(#g)"/>
+            <circle cx="${dims.w * 0.85}" cy="${dims.h * 0.18}" r="${Math.min(dims.w, dims.h) * 0.25}" fill="#38BDF8" fill-opacity="0.12"/>
+            <circle cx="${dims.w * 0.15}" cy="${dims.h * 0.85}" r="${Math.min(dims.w, dims.h) * 0.22}" fill="#10B981" fill-opacity="0.12"/>
+            <rect x="24" y="24" width="${dims.w - 48}" height="${dims.h - 48}" rx="18" fill="none" stroke="#38BDF8" stroke-opacity="0.28" stroke-dasharray="8 8" stroke-width="2"/>
+            <text x="50%" y="46%" text-anchor="middle" fill="#F8FAFC" font-family="Inter, system-ui, sans-serif" font-size="${dims.w < 450 ? 22 : 28}" font-weight="700">${safeLabel}</text>
+            <text x="50%" y="55%" text-anchor="middle" fill="#94A3B8" font-family="monospace" font-size="${dims.w < 450 ? 14 : 18}">${safePath}</text>
+          </svg>
+        `.trim();
+
+        return 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(svg);
+      }
+
+      function attachImageFallback(imgEl, label, pathHint, ratio) {
+        imgEl.addEventListener('error', function onErr() {
+          imgEl.removeEventListener('error', onErr);
+          imgEl.src = buildPlaceholderSvg(label, pathHint, ratio);
+        });
+      }
+
+      function getWhatsAppHref() {
+        const cleanNum = SITE_CONFIG.whatsappNumber.replace(/[^\d]/g, '');
+        return `https://wa.me/${cleanNum}?text=${encodeURIComponent(SITE_CONFIG.whatsappMessage)}`;
+      }
+
+      function getSocialIconSvg(type) {
+        const icons = {
+          linkedin: '<svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5A2.5 2.5 0 1 1 5 8.5a2.5 2.5 0 0 1-.02-5ZM3 9h4v12H3V9Zm7 0h3.8v1.64h.05c.53-1 1.83-2.06 3.77-2.06 4.03 0 4.78 2.65 4.78 6.1V21h-4v-5.58c0-1.33-.02-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.95V21h-4V9Z"/></svg>',
+          behance: '<svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8.84 10.89c1.22-.5 1.91-1.48 1.91-2.85 0-2.46-1.84-3.54-4.5-3.54H1v15h5.52c3.02 0 5.08-1.45 5.08-4.38 0-1.9-.93-3.56-2.76-4.23ZM4.13 7.05h2.01c1.09 0 1.75.46 1.75 1.42 0 1.03-.73 1.49-1.75 1.49H4.13V7.05Zm2.22 9.88H4.13v-3.58h2.3c1.29 0 2.04.58 2.04 1.82 0 1.27-.85 1.76-2.12 1.76ZM19.86 6.2h-5.4v1.54h5.4V6.2Zm-2.66 2.86c-3.16 0-5.22 2.27-5.22 5.42 0 3.31 2.02 5.26 5.34 5.26 2.38 0 4.18-1.08 4.86-3.27h-2.55c-.31.8-1.15 1.24-2.18 1.24-1.63 0-2.63-.95-2.7-2.62h7.63c.16-3.71-1.74-6.03-5.18-6.03Zm-2.44 4.16c.15-1.35 1.05-2.16 2.38-2.16 1.38 0 2.21.84 2.36 2.16h-4.74Z"/></svg>',
+          instagram: '<svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.43.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23a3.7 3.7 0 0 1-.9 1.38 3.7 3.7 0 0 1-1.38.9c-.43.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41a3.7 3.7 0 0 1-1.38-.9 3.7 3.7 0 0 1-.9-1.38c-.16-.43-.36-1.06-.41-2.23C2.17 15.58 2.16 15.2 2.16 12s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.43-.16 1.06-.36 2.23-.41C8.42 2.17 8.8 2.16 12 2.16ZM12 0C8.74 0 8.33.01 7.05.07 5.78.13 4.9.33 4.14.63a5.88 5.88 0 0 0-2.13 1.38A5.88 5.88 0 0 0 .63 4.14C.33 4.9.13 5.78.07 7.05.01 8.33 0 8.74 0 12s.01 3.67.07 4.95c.06 1.27.26 2.15.56 2.91.3.79.72 1.46 1.38 2.13a5.88 5.88 0 0 0 2.13 1.38c.76.3 1.64.5 2.91.56C8.33 23.99 8.74 24 12 24s3.67-.01 4.95-.07c1.27-.06 2.15-.26 2.91-.56a5.88 5.88 0 0 0 2.13-1.38 5.88 5.88 0 0 0 1.38-2.13c.3-.76.5-1.64.56-2.91.06-1.28.07-1.69.07-4.95s-.01-3.67-.07-4.95c-.06-1.27-.26-2.15-.56-2.91a5.88 5.88 0 0 0-1.38-2.13A5.88 5.88 0 0 0 19.86.63c-.76-.3-1.64-.5-2.91-.56C15.67.01 15.26 0 12 0Zm0 5.84A6.16 6.16 0 1 0 18.16 12 6.16 6.16 0 0 0 12 5.84Zm0 10.16A4 4 0 1 1 16 12a4 4 0 0 1-4 4Zm6.41-11.85a1.44 1.44 0 1 0 1.44 1.44 1.44 1.44 0 0 0-1.44-1.44Z"/></svg>'
+        };
+        return icons[type] || '';
+      }
+
+      /* =====================================================================
+         E. INICIALIZACIÓN DE DATOS GENERALES DEL PERFIL Y FOOTER
+         ===================================================================== */
+      function initProfileAndLinks() {
+        document.getElementById('brand-initials').textContent = SITE_CONFIG.initials;
+        document.getElementById('brand-name').textContent = SITE_CONFIG.name;
+        document.getElementById('profile-name').textContent = SITE_CONFIG.name;
+        document.getElementById('profile-role').textContent = SITE_CONFIG.role;
+        document.getElementById('profile-bio').textContent = SITE_CONFIG.bio;
+        document.getElementById('footer-author').textContent = SITE_CONFIG.name;
+        document.getElementById('footer-year').textContent = new Date().getFullYear();
+
+        const avatarEl = document.getElementById('profile-avatar');
+        avatarEl.src = SITE_CONFIG.avatar;
+        avatarEl.alt = `Fotografía profesional de ${SITE_CONFIG.name}`;
+        attachImageFallback(avatarEl, SITE_CONFIG.initials, SITE_CONFIG.avatar, '1:1');
+
+        const cvDownloadBtn = document.getElementById('cv-download-btn');
+        cvDownloadBtn.href = SITE_CONFIG.cvPdf;
+
+        document.getElementById('contact-email-btn').href = `mailto:${SITE_CONFIG.email}`;
+
+        const waHref = getWhatsAppHref();
+        document.querySelectorAll('.js-whatsapp-link').forEach((el) => {
+          el.href = waHref;
+        });
+
+        const socialContainer = document.getElementById('social-links');
+        socialContainer.innerHTML = SITE_CONFIG.socials
+          .map(
+            (s) => `
+            <a href="${s.url}" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="Visitar perfil en ${s.label} (nueva pestaña)">
+              ${getSocialIconSvg(s.icon)}
+              <span>${s.label}</span>
+            </a>`
+          )
+          .join('');
+
+        // Botón para previsualizar el CV dentro del visor modal de PDF
+        document.getElementById('cv-preview-btn').addEventListener('click', (e) => {
+          openModal(
+            {
+              id: 'cv-modal-doc',
+              format: 'pdf',
+              badge: 'Currículum Vitae',
+              title: `CV Profesional — ${SITE_CONFIG.name}`,
+              description: 'Visualización directa del CV en PDF. También puedes descargarlo para conservar una copia.',
+              pdfUrl: SITE_CONFIG.cvPdf
+            },
+            e.currentTarget
+          );
+        });
+      }
+
+      /* =====================================================================
+         F. RENDERIZADO DE FILTROS Y GALERÍA MULTIMEDIA
+         ===================================================================== */
+      let activeFilter = 'all';
+
+      function getCategoryCount(categoryId) {
+        if (categoryId === 'all') return PORTFOLIO_ITEMS.length;
+        return PORTFOLIO_ITEMS.filter((item) => item.category === categoryId).length;
+      }
+
+      function renderFilters() {
+        const filterBar = document.getElementById('filter-bar');
+        filterBar.innerHTML = '';
+
+        FILTER_CATEGORIES.forEach((cat) => {
+          const btn = document.createElement('button');
+          btn.type = 'button';
+          btn.className = 'filter-btn';
+          btn.dataset.filter = cat.id;
+          btn.setAttribute('aria-pressed', String(activeFilter === cat.id));
+          btn.innerHTML = `
+            <span>${cat.label}</span>
+            <span class="filter-count" aria-hidden="true">${getCategoryCount(cat.id)}</span>
+          `;
+
+          btn.addEventListener('click', () => {
+            activeFilter = cat.id;
+            updateFilterButtons();
+            renderPortfolioGrid();
+          });
+
+          filterBar.appendChild(btn);
+        });
+      }
+
+      function updateFilterButtons() {
+        document.querySelectorAll('.filter-btn').forEach((btn) => {
+          btn.setAttribute('aria-pressed', String(btn.dataset.filter === activeFilter));
+        });
+      }
+
+      function getCardActionLabel(item) {
+        switch (item.format) {
+          case 'reel':
+            return 'Reproducir Reel';
+          case 'video':
+            return 'Ver Video';
+          case 'carousel':
+            return 'Explorar Carrusel';
+          case 'pdf':
+          case 'presentation':
+            return 'Ver documento';
+          default:
+            return 'Ver proyecto';
+        }
+      }
+
+      function renderPortfolioGrid() {
+        const grid = document.getElementById('portfolio-grid');
+        const statusEl = document.getElementById('filter-status');
+
+        const filtered =
+          activeFilter === 'all'
+            ? PORTFOLIO_ITEMS
+            : PORTFOLIO_ITEMS.filter((item) => item.category === activeFilter);
+
+        grid.classList.toggle('is-filtered', activeFilter !== 'all');
+        grid.innerHTML = '';
+
+        if (filtered.length === 0) {
+          grid.innerHTML = '<div class="empty-state">No hay proyectos registrados en esta categoría todavía.</div>';
+          statusEl.textContent = 'No se encontraron proyectos en esta categoría.';
+          return;
+        }
+
+        const catObj = FILTER_CATEGORIES.find((c) => c.id === activeFilter);
+        statusEl.textContent = `Mostrando ${filtered.length} proyectos en la categoría ${catObj ? catObj.label : 'Todos'}.`;
+
+        filtered.forEach((item) => {
+          const card = document.createElement('article');
+          card.className = 'media-card';
+          card.dataset.format = item.format;
+
+          const isVideoType = item.format === 'reel' || item.format === 'video';
+          const isPdfType = item.format === 'pdf' || item.format === 'presentation';
+          const ratioHint = item.format === 'reel' ? '9:16' : item.format === 'carousel' ? '4:3' : '16:9';
+          const actionText = getCardActionLabel(item);
+
+          card.innerHTML = `
+            <div class="card-thumb-wrap">
+              <img
+                src="${item.thumbnail}"
+                alt="Miniatura de ${item.title}"
+                class="card-thumb"
+                loading="lazy"
+              />
+              <button
+                type="button"
+                class="card-overlay-trigger"
+                aria-label="${actionText}: ${item.title}"
+              >
+                ${
+                  isVideoType
+                    ? `<span class="play-circle" aria-hidden="true">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><polygon points="7 4 20 12 7 20 7 4"/></svg>
+                      </span>`
+                    : ''
+                }
+              </button>
+              <div class="card-badges">
+                <span class="pill-tag ${isPdfType ? 'pill-tag--emerald' : 'pill-tag--sky'}">${item.badge}</span>
+                ${item.duration ? `<span class="pill-tag">${item.duration}</span>` : ''}
+              </div>
+            </div>
+
+            <div class="card-body">
+              <span class="card-meta">${item.client}</span>
+              <h3 class="card-title">${item.title}</h3>
+              <p class="card-desc">${item.description}</p>
+              <div class="card-footer">
+                <span class="card-tools">${item.tools}</span>
+                <button type="button" class="btn ${isPdfType ? 'btn-primary' : 'btn-secondary'} btn-sm js-open-item">
+                  ${actionText}
+                </button>
+              </div>
+            </div>
+          `;
+
+          const imgEl = card.querySelector('.card-thumb');
+          attachImageFallback(imgEl, item.badge, item.thumbnail, ratioHint);
+
+          const openHandler = (event) => openModal(item, event.currentTarget);
+          card.querySelector('.card-overlay-trigger').addEventListener('click', openHandler);
+          card.querySelector('.js-open-item').addEventListener('click', openHandler);
+
+          grid.appendChild(card);
+        });
+      }
+
+      /* =====================================================================
+         G. RENDERIZADO DE HABILIDADES Y EXPERIENCIA DEL CV
+         ===================================================================== */
+      function renderSkills() {
+        const container = document.getElementById('skills-grid');
+        container.innerHTML = SKILLS_DATA.map(
+          (skill) => `
+          <article class="skill-card">
+            <div class="skill-top">
+              <div class="skill-badge ${skill.accent === 'emerald' ? 'skill-badge--emerald' : ''}" aria-hidden="true">
+                ${skill.abbr}
+              </div>
+              <div>
+                <h3 class="skill-name">${skill.name}</h3>
+                <p class="skill-role">${skill.role}</p>
+              </div>
+            </div>
+            <div>
+              <div class="skill-level-row">
+                <span>Dominio</span>
+                <span>${skill.level} (${skill.percent}%)</span>
+              </div>
+              <div
+                class="skill-bar-track"
+                role="progressbar"
+                aria-label="Nivel en ${skill.name}"
+                aria-valuenow="${skill.percent}"
+                aria-valuemin="0"
+                aria-valuemax="100"
+              >
+                <div class="skill-bar-fill" style="width: ${skill.percent}%;"></div>
+              </div>
+            </div>
+          </article>
+        `
+        ).join('');
+      }
+
+      function renderExperience() {
+        const container = document.getElementById('experience-timeline');
+        container.innerHTML = EXPERIENCE_DATA.map(
+          (exp) => `
+          <li class="timeline-item">
+            <span class="timeline-period">${exp.period}</span>
+            <h4 class="timeline-role">${exp.role}</h4>
+            <p class="timeline-company">${exp.company}</p>
+            <ul class="timeline-achievements">
+              ${exp.achievements.map((ach) => `<li>${ach}</li>`).join('')}
+            </ul>
+          </li>
+        `
+        ).join('');
+      }
+
+      /* =====================================================================
+         H. MOTOR DE MODALES ACCESIBLES (FOCUS TRAP, ESC, SCROLL LOCK)
+         ===================================================================== */
+      const pageWrapper = document.getElementById('page-wrapper');
+      const modalBackdrop = document.getElementById('media-modal');
+      const modalDialog = document.getElementById('modal-dialog');
+      const modalKicker = document.getElementById('modal-kicker');
+      const modalTitle = document.getElementById('modal-title');
+      const modalBody = document.getElementById('modal-body');
+      const modalCloseBtn = document.getElementById('modal-close-btn');
+
+      let lastFocusedElement = null;
+      let activeCarouselState = null;
+
+      function getFocusableElements(container) {
+        return Array.from(
+          container.querySelectorAll(
+            'a[href], button:not([disabled]), iframe, input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])'
+          )
+        ).filter((el) => !el.hasAttribute('hidden') && el.offsetParent !== null);
+      }
+
+      function openModal(item, triggerEl) {
+        lastFocusedElement = triggerEl || document.activeElement;
+        activeCarouselState = null;
+
+        modalDialog.className = 'modal-dialog';
+        if (item.format === 'reel') modalDialog.classList.add('modal--reel');
+        if (item.format === 'pdf' || item.format === 'presentation') modalDialog.classList.add('modal--pdf');
+
+        modalKicker.textContent = item.badge || 'Proyecto';
+        modalTitle.textContent = item.title;
+        modalBody.innerHTML = '';
+
+        // Inyectar el reproductor o visor según el tipo multimedia
+        if (item.format === 'reel') {
+          renderVideoModalContent(item, true);
+        } else if (item.format === 'video') {
+          renderVideoModalContent(item, false);
+        } else if (item.format === 'carousel') {
+          renderCarouselModalContent(item);
+        } else if (item.format === 'pdf' || item.format === 'presentation') {
+          renderPdfModalContent(item);
+        }
+
+        modalBackdrop.hidden = false;
+        requestAnimationFrame(() => {
+          modalBackdrop.classList.add('is-open');
+        });
+
+        document.body.classList.add('modal-open');
+        pageWrapper.setAttribute('aria-hidden', 'true');
+        modalCloseBtn.focus();
+      }
+
+      function closeModal() {
+        if (modalBackdrop.hidden) return;
+
+        modalBackdrop.classList.remove('is-open');
+        document.body.classList.remove('modal-open');
+        pageWrapper.removeAttribute('aria-hidden');
+        activeCarouselState = null;
+
+        // Limpiar contenido para detener cualquier video/audio inmediatamente
+        setTimeout(() => {
+          modalBackdrop.hidden = true;
+          modalBody.innerHTML = '';
+        }, 220);
+
+        if (lastFocusedElement && typeof lastFocusedElement.focus === 'function') {
+          lastFocusedElement.focus();
+        }
+      }
+
+      /* 1 & 2. Reproductor Modal para Reels (9:16) y Videos Horizontales (16:9) */
+      function renderVideoModalContent(item, isVertical) {
+        const wrapperClass = isVertical ? 'embed-9-16' : 'embed-16-9';
+        let playerMarkup = '';
+
+        if (item.mediaType === 'video' && item.videoUrl) {
+          playerMarkup = `
+            <video controls autoplay loop playsinline poster="${item.thumbnail}">
+              <source src="${item.videoUrl}" type="video/mp4" />
+              Tu navegador no soporta la reproducción de video HTML5.
+            </video>
+          `;
+        } else {
+          playerMarkup = `
+            <iframe
+              src="${item.embedUrl}"
+              title="Reproductor multimedia: ${item.title}"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen
+            ></iframe>
+          `;
+        }
+
+        modalBody.innerHTML = `
+          <div class="${wrapperClass}">
+            ${playerMarkup}
+          </div>
+          <p id="modal-desc" class="modal-description">${item.description}</p>
+        `;
+      }
+
+      /* 3. Visor Modal de Carrusel Interactivo con teclado, dots y swipe */
+      function renderCarouselModalContent(item) {
+        const slides = item.slides && item.slides.length ? item.slides : [{ src: item.thumbnail, caption: item.title }];
+        activeCarouselState = { slides, index: 0, title: item.title };
+
+        modalBody.innerHTML = `
+          <div class="carousel-stage" id="carousel-stage" aria-roledescription="carrusel" aria-label="Láminas de ${item.title}">
+            <img id="carousel-active-img" class="carousel-image" src="" alt="" />
+            <button type="button" id="carousel-prev" class="carousel-nav-btn carousel-nav-btn--prev" aria-label="Lámina anterior">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <polyline points="15 18 9 12 15 6" />
+              </svg>
+            </button>
+            <button type="button" id="carousel-next" class="carousel-nav-btn carousel-nav-btn--next" aria-label="Lámina siguiente">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <polyline points="9 18 15 12 9 6" />
+              </svg>
+            </button>
+          </div>
+
+          <div class="carousel-controls">
+            <div id="carousel-dots" class="carousel-dots" role="tablist" aria-label="Seleccionar lámina"></div>
+            <span id="carousel-counter" class="pill-tag" aria-live="polite">1 / ${slides.length}</span>
+          </div>
+
+          <div class="carousel-caption-bar">
+            <p id="carousel-caption"></p>
+          </div>
+          <p id="modal-desc" class="modal-description">${item.description}</p>
+        `;
+
+        const dotsWrap = document.getElementById('carousel-dots');
+        slides.forEach((_, idx) => {
+          const dot = document.createElement('button');
+          dot.type = 'button';
+          dot.className = 'carousel-dot';
+          dot.setAttribute('aria-label', `Ir a la lámina ${idx + 1} de ${slides.length}`);
+          dot.addEventListener('click', () => updateCarouselSlide(idx));
+          dotsWrap.appendChild(dot);
+        });
+
+        document.getElementById('carousel-prev').addEventListener('click', () => stepCarousel(-1));
+        document.getElementById('carousel-next').addEventListener('click', () => stepCarousel(1));
+
+        // Soporte táctil (swipe) para dispositivos móviles
+        let touchStartX = 0;
+        const stage = document.getElementById('carousel-stage');
+        stage.addEventListener('touchstart', (e) => {
+          touchStartX = e.changedTouches[0].screenX;
+        }, { passive: true });
+        stage.addEventListener('touchend', (e) => {
+          const deltaX = e.changedTouches[0].screenX - touchStartX;
+          if (Math.abs(deltaX) > 40) {
+            stepCarousel(deltaX < 0 ? 1 : -1);
+          }
+        }, { passive: true });
+
+        updateCarouselSlide(0);
+      }
+
+      function stepCarousel(delta) {
+        if (!activeCarouselState) return;
+        const total = activeCarouselState.slides.length;
+        const nextIdx = (activeCarouselState.index + delta + total) % total;
+        updateCarouselSlide(nextIdx);
+      }
+
+      function updateCarouselSlide(newIndex) {
+        if (!activeCarouselState) return;
+        activeCarouselState.index = newIndex;
+        const slide = activeCarouselState.slides[newIndex];
+        const total = activeCarouselState.slides.length;
+
+        const imgEl = document.getElementById('carousel-active-img');
+        imgEl.onerror = () => {
+          imgEl.onerror = null;
+          imgEl.src = buildPlaceholderSvg(`Lámina ${newIndex + 1} de ${total}`, slide.src, '4:3');
+        };
+        imgEl.src = slide.src;
+        imgEl.alt = slide.caption || `${activeCarouselState.title} - Lámina ${newIndex + 1}`;
+
+        document.getElementById('carousel-caption').textContent = slide.caption || '';
+        document.getElementById('carousel-counter').textContent = `${newIndex + 1} / ${total}`;
+
+        document.querySelectorAll('#carousel-dots .carousel-dot').forEach((dot, idx) => {
+          dot.setAttribute('aria-current', idx === newIndex ? 'true' : 'false');
+        });
+      }
+
+      /* 4. Visor Modal en Pantalla Completa para PDFs con Google Docs Viewer */
+      function renderPdfModalContent(item) {
+        const isPublicWeb = /^https?:$/i.test(window.location.protocol) && !['localhost', '127.0.0.1'].includes(window.location.hostname);
+        const absolutePdfUrl = new URL(item.pdfUrl, window.location.href).href;
+        const gviewUrl = `https://docs.google.com/gview?embedded=true&url=${encodeURIComponent(absolutePdfUrl)}`;
+
+        // En GitHub Pages (HTTPS público) inicia directamente con Google Docs Viewer.
+        // En entorno local (file:// o localhost) permite ver con visor nativo y probar el switch.
+        let usingGoogleViewer = isPublicWeb;
+
+        modalBody.innerHTML = `
+          <div class="pdf-toolbar">
+            <p id="modal-desc" class="pdf-toolbar-info">
+              ${
+                isPublicWeb
+                  ? 'Visualizando con Google Docs Viewer para compatibilidad óptima en móviles.'
+                  : 'Vista previa local: usando visor nativo (en GitHub Pages se activará Google Docs Viewer automáticamente).'
+              }
+            </p>
+            <div class="pdf-toolbar-actions">
+              <button type="button" id="pdf-toggle-viewer" class="btn btn-secondary btn-sm">
+                ${usingGoogleViewer ? 'Cambiar a Visor Nativo' : 'Usar Google Docs Viewer'}
+              </button>
+              <a
+                href="${item.pdfUrl}"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="btn btn-secondary btn-sm"
+              >
+                Abrir aparte
+              </a>
+              <a
+                href="${item.pdfUrl}"
+                download
+                class="btn btn-primary btn-sm"
+              >
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                  <polyline points="7 10 12 15 17 10" />
+                  <line x1="12" y1="15" x2="12" y2="3" />
+                </svg>
+                Descargar PDF
+              </a>
+            </div>
+          </div>
+          <div class="pdf-frame-wrap">
+            <iframe
+              id="pdf-viewer-iframe"
+              class="pdf-frame"
+              src="${usingGoogleViewer ? gviewUrl : item.pdfUrl}"
+              title="Visor de documento PDF: ${item.title}"
+            ></iframe>
+          </div>
+        `;
+
+        const toggleBtn = document.getElementById('pdf-toggle-viewer');
+        const iframeEl = document.getElementById('pdf-viewer-iframe');
+        toggleBtn.addEventListener('click', () => {
+          usingGoogleViewer = !usingGoogleViewer;
+          iframeEl.src = usingGoogleViewer ? gviewUrl : item.pdfUrl;
+          toggleBtn.textContent = usingGoogleViewer ? 'Cambiar a Visor Nativo' : 'Usar Google Docs Viewer';
+        });
+      }
+
+      /* Eventos globales del modal: trampa de foco, cierre ESC, flechas del carrusel */
+      modalCloseBtn.addEventListener('click', closeModal);
+      modalBackdrop.addEventListener('click', (e) => {
+        if (e.target === modalBackdrop) closeModal();
+      });
+
+      document.addEventListener('keydown', (e) => {
+        if (modalBackdrop.hidden) return;
+
+        if (e.key === 'Escape') {
+          e.preventDefault();
+          closeModal();
+          return;
+        }
+
+        if (activeCarouselState) {
+          if (e.key === 'ArrowRight') {
+            e.preventDefault();
+            stepCarousel(1);
+            return;
+          }
+          if (e.key === 'ArrowLeft') {
+            e.preventDefault();
+            stepCarousel(-1);
+            return;
+          }
+        }
+
+        // Trampa de foco (Focus Trap) estricta dentro del modal
+        if (e.key === 'Tab') {
+          const focusables = getFocusableElements(modalDialog);
+          if (focusables.length === 0) return;
+
+          const first = focusables[0];
+          const last = focusables[focusables.length - 1];
+
+          if (e.shiftKey) {
+            if (document.activeElement === first || !modalDialog.contains(document.activeElement)) {
+              e.preventDefault();
+              last.focus();
+            }
+          } else {
+            if (document.activeElement === last || !modalDialog.contains(document.activeElement)) {
+              e.preventDefault();
+              first.focus();
+            }
+          }
+        }
+      });
+
+      /* =====================================================================
+         I. MENÚ MÓVIL ACCESIBLE
+         ===================================================================== */
+      function initMobileMenu() {
+        const toggleBtn = document.getElementById('menu-toggle');
+        const drawer = document.getElementById('mobile-drawer');
+
+        function setMenuOpen(isOpen) {
+          drawer.classList.toggle('is-open', isOpen);
+          toggleBtn.setAttribute('aria-expanded', String(isOpen));
+          toggleBtn.setAttribute('aria-label', isOpen ? 'Cerrar menú de navegación' : 'Abrir menú de navegación');
+        }
+
+        toggleBtn.addEventListener('click', () => {
+          const currentlyOpen = drawer.classList.contains('is-open');
+          setMenuOpen(!currentlyOpen);
+        });
+
+        document.querySelectorAll('.js-mobile-link').forEach((link) => {
+          link.addEventListener('click', () => setMenuOpen(false));
+        });
+
+        document.addEventListener('keydown', (e) => {
+          if (e.key === 'Escape' && drawer.classList.contains('is-open')) {
+            setMenuOpen(false);
+            toggleBtn.focus();
+          }
+        });
+      }
+
+      /* =====================================================================
+         J. ARRANQUE DE LA APLICACIÓN
+         ===================================================================== */
+      function initApp() {
+        initProfileAndLinks();
+        renderFilters();
+        renderPortfolioGrid();
+        renderSkills();
+        renderExperience();
+        initMobileMenu();
+      }
+
+      document.addEventListener('DOMContentLoaded', initApp);
+    })();
+  </script>
+</body>
+</html>
