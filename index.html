@@ -1482,7 +1482,7 @@
         <a href="#inicio" class="brand" aria-label="Inicio - Portafolio de Diseño Gráfico y Multimedia">
           <span class="brand-mark" aria-hidden="true" id="brand-initials">AM</span>
           <span>
-            <span id="brand-name">William Duque</span>
+            <span id="brand-name">Alex Morales</span>
             <span class="brand-sub">Diseño Gráfico &amp; Multimedia</span>
           </span>
         </a>
@@ -1893,10 +1893,10 @@
           category: 'reels',
           format: 'reel',
           badge: 'Reel 9:16',
-          duration: '0:37',
-          title: 'Campaña de Soluciones Inteligentes para RETAIL',
+          duration: '0:42',
+          title: 'Campaña Soluciones Inteligentes para el Sector RETAIL',
           client: 'Geovision de Colombia',
-          description: 'Edición dinámica con transiciones de velocidad y edición sonora, optimizada para retención en redes y CTA de clientes potenciales.',
+          description: 'Edición dinámica con locución, transiciones de velocidad y diseño sonoro optimizado para retención en redes y generación de CTA para clientes potenciales.',
           tools: 'Premiere Pro',
           thumbnail: 'assets/images/portada-reel1.jpg',
           // Soporta: 'iframe' (YouTube Shorts / TikTok embed) o 'video' (MP4 local)
@@ -1911,30 +1911,31 @@
           category: 'video',
           format: 'video',
           badge: 'Video 16:9',
-          duration: '2:15',
-          title: 'Showreel Corporativo & Motion 2026',
-          client: 'Compilación Comercial',
-          description: 'Pieza audiovisual panorámica en 4K combinando animación 2D/3D, color grading cinematográfico y dirección de arte para marcas tecnológicas.',
-          tools: 'Premiere Pro • After Effects • DaVinci',
+          duration: '2:32',
+          title: 'Review de Producto Tecnológico 2026',
+          client: 'Geovision de Colombia',
+          description: 'Pieza audiovisual panorámica en Full HD combinando animación 2D, color grading cinematográfico y dirección de arte para la demo de una solución tecnológica.',
+          tools: 'Premiere Pro',
           thumbnail: 'assets/images/portada-video1.jpg',
           mediaType: 'iframe',
-          embedUrl: 'https://www.youtube.com/embed/LXb3EKWsInQ?autoplay=1&rel=0'
+          embedUrl: 'https://www.youtube.com/embed/8Oua8LbP7kg?autoplay=1&rel=0'
         },
         {
           id: 'carrusel-1',
           category: 'carruseles',
           format: 'carousel',
-          badge: 'Carrusel • 4 láminas',
-          title: 'Sistema Visual para Redes B2B',
-          client: 'NovaCloud Tech',
-          description: 'Serie editorial deslizable diseñada para Instagram y LinkedIn con jerarquía tipográfica clara y narrativa paso a paso orientada a conversión.',
-          tools: 'Illustrator • Figma • Photoshop',
-          thumbnail: 'assets/images/carrusel-1a.jpg',
+          badge: 'Carrusel • 5 láminas',
+          title: 'Concurso Interacción Integradores de CCTV',
+          client: 'Geovision de Colombia',
+          description: 'Serie deslizable diseñada para Instagram y LinkedIn con jerarquía tipográfica clara y narrativa paso a paso orientada a interacción del público técnico, con incentivo.',
+          tools: 'Illustrator • Photoshop',
+          thumbnail: 'assets/images/carrusel/reto_del_integrador/FEED_1.jpg',
           slides: [
-            { src: 'assets/images/carrusel-1a.jpg', caption: 'Lámina 1: Portada de alto impacto y gancho visual' },
-            { src: 'assets/images/carrusel-1b.jpg', caption: 'Lámina 2: Desglose de propuesta de valor con iconografía' },
-            { src: 'assets/images/carrusel-1c.jpg', caption: 'Lámina 3: Caso de éxito y métricas clave' },
-            { src: 'assets/images/carrusel-1d.jpg', caption: 'Lámina 4: Llamado a la acción final (CTA)' }
+            { src: 'assets/images/carrusel/reto_del_integrador/FEED_1.jpg', caption: 'Lámina 1: Portada de alto impacto y gancho visual' },
+            { src: 'assets/images/carrusel/reto_del_integrador/FEED_2.jpg', caption: 'Lámina 2: Introducción a la dinámica' },
+            { src: 'assets/images/carrusel/reto_del_integrador/FEED_3.jpg', caption: 'Lámina 3: Presentación del premio' },
+            { src: 'assets/images/carrusel/reto_del_integrador/FEED_4.jpg', caption: 'Lámina 4: Paso a paso para participar' },
+			{ src: 'assets/images/carrusel/reto_del_integrador/FEED_5.jpg', caption: 'Lámina 4: Información de la premiación y llamado a la acción final (CTA)' }
           ]
         },
         {
@@ -2438,9 +2439,42 @@
         }
       }
 
+      /* ================= COPIA DESDE AQUÍ ================= */
+      /* Convierte automáticamente cualquier link de YouTube (Shorts, watch, youtu.be, live) a formato /embed/ */
+      function normalizeEmbedUrl(rawUrl) {
+        if (!rawUrl) return '';
+        const cleanedUrl = String(rawUrl).trim();
+
+        try {
+          const url = new URL(cleanedUrl);
+          const host = url.hostname.replace(/^www\./, '');
+          let ytId = null;
+
+          if (host === 'youtu.be') {
+            ytId = url.pathname.slice(1).split('/')[0];
+          } else if (host === 'youtube.com' || host === 'm.youtube.com') {
+            if (url.pathname.startsWith('/shorts/') || url.pathname.startsWith('/live/')) {
+              ytId = url.pathname.split('/')[2];
+            } else if (url.pathname === '/watch') {
+              ytId = url.searchParams.get('v');
+            } else if (url.pathname.startsWith('/embed/')) {
+              return cleanedUrl;
+            }
+          }
+
+          if (ytId) {
+            return `https://www.youtube.com/embed/${ytId}?autoplay=1&rel=0`;
+          }
+        } catch (_) {
+          // Si no es una URL de YouTube (ej. Vimeo o TikTok), se deja tal cual
+        }
+        return cleanedUrl;
+      }
+
       /* 1 & 2. Reproductor Modal para Reels (9:16) y Videos Horizontales (16:9) */
       function renderVideoModalContent(item, isVertical) {
         const wrapperClass = isVertical ? 'embed-9-16' : 'embed-16-9';
+        const isLocalFile = window.location.protocol === 'file:';
         let playerMarkup = '';
 
         if (item.mediaType === 'video' && item.videoUrl) {
@@ -2451,23 +2485,34 @@
             </video>
           `;
         } else {
+          const safeEmbedUrl = normalizeEmbedUrl(item.embedUrl);
           playerMarkup = `
             <iframe
-              src="${item.embedUrl}"
+              src="${safeEmbedUrl}"
               title="Reproductor multimedia: ${item.title}"
+              referrerpolicy="strict-origin-when-cross-origin"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
               allowfullscreen
             ></iframe>
           `;
         }
 
+        const localNotice =
+          isLocalFile && item.mediaType !== 'video'
+            ? `<p class="pdf-toolbar-info" role="note">
+                 Nota de prueba local: YouTube bloquea iframes en rutas <code>file://</code> (Error 153). Ábrelo con Live Server o en GitHub Pages (HTTPS) para reproducirlo aquí.
+               </p>`
+            : '';
+
         modalBody.innerHTML = `
           <div class="${wrapperClass}">
             ${playerMarkup}
           </div>
+          ${localNotice}
           <p id="modal-desc" class="modal-description">${item.description}</p>
         `;
       }
+      /* ================= HASTA AQUÍ ================= */
 
       /* 3. Visor Modal de Carrusel Interactivo con teclado, dots y swipe */
       function renderCarouselModalContent(item) {
