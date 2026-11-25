@@ -1935,7 +1935,7 @@
             { src: 'assets/images/carrusel/reto_del_integrador/FEED_2.jpg', caption: 'Lámina 2: Introducción a la dinámica' },
             { src: 'assets/images/carrusel/reto_del_integrador/FEED_3.jpg', caption: 'Lámina 3: Presentación del premio' },
             { src: 'assets/images/carrusel/reto_del_integrador/FEED_4.jpg', caption: 'Lámina 4: Paso a paso para participar' },
-			{ src: 'assets/images/carrusel/reto_del_integrador/FEED_5.jpg', caption: 'Lámina 4: Información de la premiación y llamado a la acción final (CTA)' }
+			{ src: 'assets/images/carrusel/reto_del_integrador/FEED_5.jpg', caption: 'Lámina 5: Información de la premiación y llamado a la acción final (CTA)' }
           ]
         },
         {
@@ -1943,14 +1943,14 @@
           category: 'reels',
           format: 'reel',
           badge: 'TikTok 9:16',
-          duration: '0:35',
-          title: 'Motion Branding para App Fintech',
-          client: 'Kora Pay',
-          description: 'Animación de micro-interacciones y beneficios del producto en formato vertical para pauta en TikTok Ads y YouTube Shorts.',
-          tools: 'After Effects • Figma',
+          duration: '1:27',
+          title: 'Explicación de la Pareidolia',
+          client: '@Willizzz (proyecto personal)',
+          description: 'Contenido educativo y entretenido que explica un fenómeno muy curioso llamado "Pareidolia", que hace que de forma involuntaria veamos rostros en objetos no animados',
+          tools: 'Premiere Pro',
           thumbnail: 'assets/images/portada-reel2.jpg',
           mediaType: 'iframe',
-          embedUrl: 'https://www.tiktok.com/player/v1/@willizzz.v2/video/7443530673341648183'
+          embedUrl: 'https://www.tiktok.com/@willizzz.v2/video/7443530673341648183'
         },
         {
           id: 'brochure-1',
@@ -2470,7 +2470,7 @@
           // --- 2. SOPORTE AUTOMÁTICO PARA TIKTOK ---
           if (host === 'tiktok.com' || host === 'm.tiktok.com') {
             // Si ya es una URL del reproductor oficial, se deja tal cual
-            if (url.pathname.startsWith('/player/v1/')) {
+            if (/^\/player\/v1\/\d+\/?$/.test(url.pathname)) {
               return cleanedUrl;
             }
             // Extrae el ID numérico largo de rutas como /@usuario/video/1234567890 o /v/1234567890
