@@ -2447,9 +2447,10 @@
 
         try {
           const url = new URL(cleanedUrl);
-          const host = url.hostname.replace(/^www\./, '');
-          let ytId = null;
+          const host = url.hostname.replace(/^www\./, '').toLowerCase();
 
+          // --- 1. SOPORTE AUTOMÁTICO PARA YOUTUBE ---
+          let ytId = null;
           if (host === 'youtu.be') {
             ytId = url.pathname.slice(1).split('/')[0];
           } else if (host === 'youtube.com' || host === 'm.youtube.com') {
@@ -2465,8 +2466,21 @@
           if (ytId) {
             return `https://www.youtube.com/embed/${ytId}?autoplay=1&rel=0`;
           }
+
+          // --- 2. SOPORTE AUTOMÁTICO PARA TIKTOK ---
+          if (host === 'tiktok.com' || host === 'm.tiktok.com') {
+            // Si ya es una URL del reproductor oficial, se deja tal cual
+            if (url.pathname.startsWith('/player/v1/')) {
+              return cleanedUrl;
+            }
+            // Extrae el ID numérico largo de rutas como /@usuario/video/1234567890 o /v/1234567890
+            const tiktokMatch = url.pathname.match(/\/(?:video|photo|v|embed\/v2)\/(\d+)/);
+            if (tiktokMatch && tiktokMatch[1]) {
+              return `https://www.tiktok.com/player/v1/${tiktokMatch[1]}?autoplay=1&rel=0&music_info=0&description=0`;
+            }
+          }
         } catch (_) {
-          // Si no es una URL de YouTube (ej. Vimeo o TikTok), se deja tal cual
+          // Si es otra plataforma (ej. Vimeo), se deja tal cual
         }
         return cleanedUrl;
       }
